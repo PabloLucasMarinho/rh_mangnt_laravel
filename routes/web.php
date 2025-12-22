@@ -1,21 +1,12 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/email', function () {
-  Mail::raw('Mensagem de teste de RH MANGNT', function (Message $message) {
-    $message->to('teste@gmail.com')
-      ->subject('Bem vindo ao RH MANGNT')
-      ->from('rh@rhmangnt.com');
-  });
+Route::middleware('auth')->group(function () {
+  Route::redirect('/', 'home');
+  Route::view('/home', 'home')->name('home');
 
-  echo 'Email enviado com sucesso!';
-});
-
-Route::get('/admin', function () {
-  $admin = User::with('detail', 'department')->find(1);
-  dd($admin->toArray());
+  // user profile page
+  Route::get('user/profile', [ProfileController::class, 'index'])->name('user.profile');
 });
