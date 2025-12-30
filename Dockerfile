@@ -1,4 +1,4 @@
-FROM webdevops/php-nginx:8.2
+FROM webdevops/php-nginx:8.4
 
 ENV WEB_DOCUMENT_ROOT=/app/public
 
