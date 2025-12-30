@@ -3,7 +3,7 @@
 # =====================================================
 FROM composer:2.7 AS composer
 
-WORKDIR /app
+WORKDIR /rh_mangnt_app
 
 COPY composer.json composer.lock ./
 RUN composer install \
